@@ -35,30 +35,10 @@ ggline(PlantGrowth,
 anova <- aov(weight ~ group, data = PlantGrowth)
 summary(anova)
 
-#Tukey multiple pairwise-comparisons
-TukeyHSD(anova)
 
-#Homogeneity of variances
-plot(anova, 1)
-library(car)
-leveneTest(weight ~ group, data = PlantGrowth)
 
-# ANOVA test with no Assumption of equal variances
-oneway.test(weight ~ group, data = PlantGrowth)
 
-#Pairwise t-tests with no assumption of equal variances
-pairwise.t.test(PlantGrowth$weight, PlantGrowth$group,
-                p.adjust.method = "BH", pool.sd = FALSE)
 
-# Checking for normal distribution
-plot(anova, 2)
 
-# Extracting the residuals
-aov_res <- residuals(object = anova)
 
-# Running the Shapiro-Wilk test
-shapiro.test(aov_res)
 
-kruskal.test(weight ~ group, data = PlantGrowth)
-pairwise.wilcox.test(PlantGrowth$weight, PlantGrowth$group,
-                     p.adjust.method = "BH")
