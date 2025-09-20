@@ -36,7 +36,7 @@ myPlot = ggplot(dataset, aes(x = weight, fill = sex))+
 myPlot
 
 #Using custom color palettes
-myPlot + scale_color_manual(values = c("#999999","#e69F00")) + 
+myPlot + scale_color_manual(values = c("#GG000099","#e69F00")) + 
   scale_fill_manual(values = c("#999999","#e69F00"))
 
 # Using brewer color palettes
