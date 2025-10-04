@@ -1,9 +1,9 @@
 ## ── 0) Setup ----
 
-# install.packages(c(
-#   "tidyverse","car","emmeans","effectsize","performance",
-#   "broom","broom.helpers","kableExtra","multcomp","multcompView","patchwork"
-# ))
+#install.packages(c(
+#"tidyverse","car","emmeans","effectsize","performance",
+#"broom","broom.helpers","kableExtra","multcomp","multcompView","patchwork"
+#))
 
 suppressPackageStartupMessages({
   library(tidyverse); library(car); library(emmeans); library(effectsize)
@@ -17,7 +17,7 @@ theme_set(theme_classic(base_size = 12))
 
 ## ── 1) Import & basic hygiene ----
 
-d <- read.csv("cropdata.csv", stringsAsFactors = FALSE)
+d <-read.csv("cropdata.csv", stringsAsFactors = FALSE)
 
 # Coerce types safely
 d <- d %>%
@@ -37,16 +37,7 @@ print(d %>% group_by(fert, irr) %>% summarise(n=dplyr::n(), mean=mean(y), sd=sd(
 
 ## ── 2) EDA: raw + summary plots ----
 
-summs <- d %>%
-  group_by(fert, irr) %>%
-  summarise(
-    n   = dplyr::n(),
-    mean= mean(y),
-    sd  = sd(y),
-    se  = sd/sqrt(n),
-    ci  = qt(.975, df=n-1)*se,  # 95% CI
-    .groups = "drop"
-  )
+d
 
 p_raw <- ggplot(d, aes(irr, y, color=fert)) +
   geom_jitter(width=.08, height=0, alpha=.4) +
